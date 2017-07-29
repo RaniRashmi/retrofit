@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
+    RecyclerView recyclerView;
+
     // TODO - insert your themoviedb.org API KEY here
     private final static String API_KEY = "01e96efed09c93278f13372eb6857cf1";
 
@@ -30,10 +32,19 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.movie_recyler_view);
+        recyclerView = (RecyclerView) findViewById(R.id.movie_recyler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+
+
+        getRetrofitData();
+
+
+
+
+    }
+
+    private void getRetrofitData() {
 
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
@@ -54,7 +65,5 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, t.toString());
             }
         });
-
-
     }
 }
